@@ -31,6 +31,18 @@ def test_letterhead_and_body(cfg, example):
     assert "<th>Verantwortlich</th>" in html
 
 
+def test_footer_links(cfg, example):
+    html = _render(cfg, example, "kickoff-protokoll.md")
+    assert '<a href="mailto:mail@falkner-it.example">' in html
+    assert '<a href="https://falkner-it.example">falkner-it.example</a>' in html
+
+
+def test_footer_link_keeps_explicit_scheme(cfg, example):
+    cfg.letterhead.contact["website"] = "http://falkner-it.example"
+    html = _render(cfg, example, "kickoff-protokoll.md")
+    assert '<a href="http://falkner-it.example">' in html
+
+
 def test_no_recipient_no_addressline(cfg, example):
     html = _render(cfg, example, "statusbericht-august.md")
     assert 'class="addressline"' not in html

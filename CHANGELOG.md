@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Front matter fields: `type`, `title`, `date` (required), `number`,
   `recipient`, `meta`, `signature`, `slug`, `lang`.
 - Page numbers (`i / n`, bottom right) and PDF title/author metadata via pypdf.
+- The footer's e-mail and website are clickable links in the PDF.
 - CLI: `praxigraph build` (with `--doc`, `--html-only`, `--date`) and
   `praxigraph validate`.
 - Example under `examples/minimal/` with a fictional company; doubles as the

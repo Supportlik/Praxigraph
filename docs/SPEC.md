@@ -28,6 +28,7 @@ page numbers and metadata.
 | R10 | `praxigraph validate` checks config and all documents without Chrome. | `cli.py` |
 | R11 | The test suite runs without Chrome and without network. | `tests/` |
 | R12 | Front matter and config values are HTML-escaped; formatting belongs in the Markdown body. | `render.py` (D5) |
+| R13 | The footer's e-mail and website are clickable PDF links (Chrome carries `<a href>` into link annotations), styled as plain text. | `render.py`, theme |
 
 ## Design decisions
 

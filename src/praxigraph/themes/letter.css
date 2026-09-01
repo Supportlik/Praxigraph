@@ -118,6 +118,12 @@ footer.letterhead-footer .footer-label {
     margin-right: 1mm;
 }
 
+/* E-mail and website are clickable in the PDF, but look like plain text. */
+footer.letterhead-footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
 /* First page: sender line + recipient on the left, info box on the right. */
 .first-page-head {
     display: flex;

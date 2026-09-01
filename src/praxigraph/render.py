@@ -79,10 +79,19 @@ def _footer_html(head: Letterhead, labels: dict) -> str:
         address.append((None, _esc(head.country)))
     sections = [_footer_section(address)]
 
-    contact = [(labels[key], _esc(head.contact[field]))
-               for key, field in (("phone", "phone"), ("email", "email"),
-                                  ("web", "website"))
-               if head.contact.get(field)]
+    contact = []
+    if head.contact.get("phone"):
+        contact.append((labels["phone"], _esc(head.contact["phone"])))
+    if head.contact.get("email"):
+        email = head.contact["email"]
+        contact.append((labels["email"],
+                        f'<a href="mailto:{html.escape(email)}">{_esc(email)}</a>'))
+    if head.contact.get("website"):
+        website = head.contact["website"]
+        url = website if website.startswith(("http://", "https://")) \
+            else f"https://{website}"
+        contact.append((labels["web"],
+                        f'<a href="{html.escape(url)}">{_esc(website)}</a>'))
     if contact:
         sections.append(_footer_section(contact))
 
