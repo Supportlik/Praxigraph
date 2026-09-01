@@ -13,7 +13,7 @@ license-files = ["LICENSE"]
 authors = [{ name = "Michael Bortlik", email = "michael@bortlik.io" }]
 keywords = ["report", "minutes", "protocol", "letterhead", "pdf", "markdown", "generator"]
 classifiers = [
-  "Development Status :: 4 - Beta",
+  "Development Status :: 5 - Production/Stable",
   "Environment :: Console",
   "Intended Audience :: End Users/Desktop",
   "Operating System :: OS Independent",
