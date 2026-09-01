@@ -1,6 +1,8 @@
 # Praxigraph
 
 [![CI](https://github.com/Supportlik/Praxigraph/actions/workflows/ci.yml/badge.svg)](https://github.com/Supportlik/Praxigraph/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/praxigraph.svg)](https://pypi.org/project/praxigraph/)
+[![Python versions](https://img.shields.io/pypi/pyversions/praxigraph.svg)](https://pypi.org/project/praxigraph/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Supportlik/Praxigraph/blob/main/LICENSE)
 
 **Praxigraph** (Greek *πρᾶξις* "act, transaction, proceeding" + *γράφειν* "to write": "the one that writes down your proceedings") is a Markdown-driven generator for business documents on your own letterhead: **meeting minutes, status reports, certificates, timesheets** — anything you issue on company paper that is not an invoice. It is the sibling project of [Ergograph](https://github.com/Supportlik/Ergograph), which does the same for CVs and dossiers.
