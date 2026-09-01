@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52" role="img" aria-label="Falkner IT logo">
+  <!-- Fictional example logo: a monogram "F" in a rounded square. -->
+  <rect x="3" y="3" width="46" height="46" rx="9" fill="none" stroke="#1a3c6e" stroke-width="3"/>
+  <path d="M18 38 V14 H36 M18 25 H31" fill="none" stroke="#1a3c6e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

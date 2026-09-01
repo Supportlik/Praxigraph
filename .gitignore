@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+dist/
+build/
+.pytest_cache/
+
+# Generated intermediate output when building the examples in the repo.
+# The rendered example PDFs (examples/*/pdf/) ARE committed on purpose.
+examples/*/.build/
+
+# macOS
+.DS_Store
+
+# Local Claude instructions
+CLAUDE.md
+CLAUDE.local.md

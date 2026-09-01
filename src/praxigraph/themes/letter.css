@@ -1,0 +1,291 @@
+/* Theme "letter": A4 business letterhead in the style of a classic black
+ * invoice template (Roboto Condensed, black primary color, logo top right,
+ * four-column footer with the company data).
+ *
+ * Chrome headless has no support for CSS margin boxes or `position: running`,
+ * so the letterhead uses the two mechanisms Chrome's print engine does honor:
+ * `position: fixed` elements repeat on every printed page, and a table's
+ * thead/tfoot repeat as well and reserve the vertical space for them.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --primary-color: #000000;
+    --muted-color: #666666;
+    --rule-color: #000000;
+    --page-left: 20mm;
+    --page-right: 15mm;
+    --header-height: 46mm;
+    --footer-height: 30mm;
+}
+
+@page {
+    size: A4 portrait;
+    margin: 0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Roboto Condensed", "Helvetica Neue", Arial, sans-serif;
+    font-size: 9pt;
+    line-height: 11.5pt;
+    color: #000;
+}
+
+/* Page skeleton: thead/tfoot spacers reserve the letterhead zones. */
+table.page {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table.page > thead > tr > td,
+table.page > tfoot > tr > td {
+    padding: 0;
+}
+
+.header-space { height: var(--header-height); }
+.footer-space { height: var(--footer-height); }
+
+td.content {
+    padding: 0 var(--page-right) 0 var(--page-left);
+    vertical-align: top;
+}
+
+/* Letterhead header: repeated on every page via position: fixed. */
+header.letterhead-header {
+    position: fixed;
+    top: 0;
+    left: var(--page-left);
+    right: var(--page-right);
+    height: var(--header-height);
+}
+
+header.letterhead-header .logo,
+header.letterhead-header .logo svg,
+header.letterhead-header .logo img {
+    position: absolute;
+    top: 9mm;
+    right: 0;
+    width: 27mm;
+    height: 27mm;
+    object-fit: contain;
+}
+
+header.letterhead-header .logo svg,
+header.letterhead-header .logo img {
+    top: 0;
+    right: 0;
+}
+
+header.letterhead-header .logo-fallback {
+    position: absolute;
+    top: 12mm;
+    right: 0;
+    font-size: 16pt;
+    font-weight: 400;
+    color: var(--primary-color);
+    text-align: right;
+}
+
+/* Letterhead footer: four-column company grid, repeated on every page. */
+footer.letterhead-footer {
+    position: fixed;
+    bottom: 0;
+    left: var(--page-left);
+    right: var(--page-right);
+    height: var(--footer-height);
+    font-size: 7pt;
+    line-height: 10pt;
+    color: var(--primary-color);
+}
+
+footer.letterhead-footer .footer-grid {
+    position: absolute;
+    bottom: 8mm;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 2mm;
+}
+
+footer.letterhead-footer .footer-label {
+    display: inline-block;
+    margin-right: 1mm;
+}
+
+/* First page: sender line + recipient on the left, info box on the right. */
+.first-page-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 10mm;
+    margin-bottom: 10mm;
+}
+
+.first-page-head.with-recipient { min-height: 45mm; }
+
+.recipient-block { max-width: 85mm; }
+
+.addressline {
+    font-size: 7pt;
+    line-height: 9pt;
+    margin-bottom: 6mm;
+}
+
+.recipient {
+    font-size: 9pt;
+    line-height: 1.35;
+}
+
+.infobox { width: 65mm; flex: 0 0 65mm; }
+
+.infobox table {
+    width: 100%;
+    border-spacing: 0;
+    font-size: 7pt;
+}
+
+.infobox td {
+    padding: 0.5mm;
+    vertical-align: top;
+    word-wrap: anywhere;
+}
+
+.infobox td.infobox-label { padding-left: 0; }
+.infobox td.infobox-value { text-align: right; }
+
+/* Document heading */
+.doc-head { margin-bottom: 5mm; }
+
+.doc-type {
+    font-size: 9pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted-color);
+    margin-bottom: 1.5mm;
+}
+
+.doc-type .doc-number { color: var(--muted-color); }
+
+h1.doc-title {
+    font-size: 14pt;
+    line-height: 17pt;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+/* Body typography (rendered from Markdown) */
+.doc-body h2 {
+    font-size: 11pt;
+    line-height: 14pt;
+    font-weight: 700;
+    margin: 6mm 0 2mm;
+    page-break-after: avoid;
+}
+
+.doc-body h3 {
+    font-size: 9.5pt;
+    font-weight: 700;
+    margin: 4mm 0 1.5mm;
+    page-break-after: avoid;
+}
+
+.doc-body h4 {
+    font-size: 9pt;
+    font-weight: 700;
+    margin: 3mm 0 1mm;
+    page-break-after: avoid;
+}
+
+.doc-body p { margin: 0 0 2.5mm; }
+
+.doc-body ul, .doc-body ol {
+    margin: 0 0 2.5mm;
+    padding-left: 5mm;
+}
+
+.doc-body li { margin-bottom: 1mm; }
+
+.doc-body a { color: inherit; }
+
+.doc-body hr {
+    border: none;
+    border-top: 0.5pt solid var(--muted-color);
+    margin: 4mm 0;
+}
+
+.doc-body blockquote {
+    margin: 0 0 2.5mm;
+    padding: 1mm 0 1mm 3mm;
+    border-left: 1.5pt solid var(--rule-color);
+    color: #333;
+}
+
+.doc-body code {
+    font-family: "SF Mono", "Consolas", "Liberation Mono", monospace;
+    font-size: 8pt;
+    background: #f2f2f2;
+    padding: 0 1mm;
+}
+
+.doc-body pre {
+    background: #f2f2f2;
+    padding: 2mm;
+    margin: 0 0 2.5mm;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    page-break-inside: avoid;
+}
+
+.doc-body pre code { background: none; padding: 0; }
+
+/* Tables in the invoice style: black header row, thin rules between rows. */
+.doc-body table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 3mm 0 4mm;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+}
+
+.doc-body table th {
+    background: var(--primary-color);
+    color: #fff;
+    font-weight: 700;
+    text-align: left;
+    padding: 1.5mm 1mm;
+}
+
+.doc-body table td {
+    padding: 1.5mm 1mm;
+    vertical-align: top;
+    border-bottom: 0.5pt solid #999;
+}
+
+.doc-body table tr { page-break-inside: avoid; }
+
+/* Signature block */
+.signature {
+    margin-top: 14mm;
+    page-break-inside: avoid;
+}
+
+.signature-place-date { margin-bottom: 14mm; }
+
+.signature-line {
+    width: 60mm;
+    border-top: 0.5pt solid #000;
+    margin-bottom: 1mm;
+}
+
+.signature-name { font-weight: 700; }
+
+.signature-firm {
+    font-size: 7pt;
+    color: var(--muted-color);
+}

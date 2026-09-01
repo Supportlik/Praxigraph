@@ -1,0 +1,34 @@
+# Praxigraph steering file. Every value here belongs to a fictional company;
+# it doubles as the test fixture for the test suite.
+letterhead:
+  name: Daniel Falkner
+  tagline: IT-Beratung & Systemintegration
+  street: Ahornweg 12
+  zip: "93049"
+  city: Regensburg
+  logo: assets/logo.svg
+  contact:
+    phone: +49 941 000000
+    email: mail@falkner-it.example
+    website: falkner-it.example
+  tax:
+    vat_id: DE999999999
+  bank:
+    name: Musterbank
+    iban: DE02 1203 0000 0000 2020 51
+    bic: BYLADEM1001
+  signature:
+    name: Daniel Falkner
+    place: Regensburg
+
+theme: letter
+# color: "#1a3c6e"        # optional accent color, default black
+
+documents: documents      # directory with the *.md documents
+
+output:
+  html_dir: .build/html
+  pdf_dir: pdf
+  date_prefix: false      # stable names so the committed example PDFs don't churn
+
+# chrome: /path/to/chrome # optional; otherwise auto-detected
