@@ -4,12 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.1.0] - 2026-10-07
 
 ### Added
 
 - `letterhead.header_name: true` prints the name and tagline next to the
   header logo on every page (off by default).
+- Security workflow (pip-audit, Trivy, CodeQL, dependency review) and
+  Dependabot updates for Python dependencies and GitHub Actions.
+
+### Security
+
+- pypdf raised to >= 6.19.0 (fixes PYSEC-2026-4155 to PYSEC-2026-4159).
+- Chrome now renders with its sandbox enabled; `--no-sandbox` is only used as
+  root or with `PRAXIGRAPH_CHROME_NO_SANDBOX=1` (SPEC D9).
+
+### Changed
+
+- CI: least-privilege token, concurrency, locked dependencies, current action
+  versions.
 
 ## [1.0.0] - 2026-09-01
 

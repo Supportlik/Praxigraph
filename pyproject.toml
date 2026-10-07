@@ -29,7 +29,7 @@ classifiers = [
 ]
 # All three dependencies are pure Python: PyYAML for config and front matter,
 # Markdown for the document bodies, pypdf for page numbers and metadata.
-dependencies = ["PyYAML>=6.0", "Markdown>=3.5", "pypdf>=6.0"]
+dependencies = ["PyYAML>=6.0", "Markdown>=3.5", "pypdf>=6.19.0"]
 
 [project.scripts]
 praxigraph = "praxigraph.cli:main"

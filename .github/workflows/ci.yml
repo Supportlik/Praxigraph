@@ -4,19 +4,33 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
+    name: Tests (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.2.0
         with:
           python-version: ${{ matrix.python-version }}
+          enable-cache: true
       - name: Run tests
-        run: uv run pytest
+        run: uv run --locked pytest
+      # Ubuntu runners block the unprivileged user namespaces Chrome's sandbox
+      # needs, so the example build opts out explicitly (SPEC D9).
       - name: Build the example (Chrome is preinstalled on ubuntu-latest)
-        run: cd examples/minimal && uv run praxigraph validate && uv run praxigraph build
+        env:
+          PRAXIGRAPH_CHROME_NO_SANDBOX: "1"
+        run: cd examples/minimal && uv run --locked praxigraph validate && uv run --locked praxigraph build

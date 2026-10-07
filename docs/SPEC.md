@@ -67,6 +67,12 @@ page numbers and metadata.
 - **D8 — Fictional example doubles as the test fixture** (same as Ergograph):
   format changes must update examples, tests and this spec together.
 
+- **D9 — Chrome's sandbox stays on.** Earlier versions always passed
+  `--no-sandbox`. Documents may contain raw HTML and load a web font, so the
+  renderer keeps Chrome's sandbox and switches it off only where Chrome cannot
+  start sandboxed: as root (containers) or when `PRAXIGRAPH_CHROME_NO_SANDBOX=1`
+  is set (CI runners without unprivileged user namespaces).
+
 ## File name scheme
 
 `pdf/<date>_<slug>.pdf` with `<date>` = front matter date (ISO) or the
