@@ -65,6 +65,14 @@ def test_color_override(cfg, example):
     assert "--primary-color: #1a3c6e" in html
 
 
+def test_header_name_next_to_logo(cfg, example):
+    assert '<div class="header-name">' not in _render(cfg, example, "kickoff-protokoll.md")
+    cfg.letterhead.header_name = True
+    html = _render(cfg, example, "kickoff-protokoll.md")
+    assert '<div class="header-name-main">Daniel Falkner</div>' in html
+    assert "IT-Beratung &amp; Systemintegration</div>" in html
+
+
 def test_logo_fallback_without_logo(cfg, example):
     cfg.letterhead.logo = None
     html = _render(cfg, example, "kickoff-protokoll.md")

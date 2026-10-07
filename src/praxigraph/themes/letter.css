@@ -81,6 +81,30 @@ header.letterhead-header .logo img {
     right: 0;
 }
 
+/* Optional name block left of the logo (letterhead.header_name), vertically
+   centred on the 27 mm logo box that starts 9 mm below the page top. */
+header.letterhead-header .header-name {
+    position: absolute;
+    top: 22.5mm;
+    right: 32mm;
+    transform: translateY(-50%);
+    text-align: right;
+    color: var(--primary-color);
+    white-space: nowrap;
+}
+
+header.letterhead-header .header-name-main {
+    font-size: 15pt;
+    line-height: 18pt;
+    font-weight: 700;
+}
+
+header.letterhead-header .header-name-tagline {
+    font-size: 10pt;
+    line-height: 13pt;
+    letter-spacing: 0.02em;
+}
+
 header.letterhead-header .logo-fallback {
     position: absolute;
     top: 12mm;

@@ -38,6 +38,7 @@ class Letterhead:
     tagline: str | None = None
     country: str | None = None
     logo: Path | None = None
+    header_name: bool = False                     # print name + tagline next to the logo
     contact: dict = field(default_factory=dict)   # phone, email, website
     tax: dict = field(default_factory=dict)       # vat_id, tax_number
     bank: dict = field(default_factory=dict)      # name, iban, bic
@@ -82,6 +83,10 @@ def _load_letterhead(data: dict, base: Path) -> Letterhead:
         tagline=data.get("tagline"),
         country=data.get("country"),
     )
+    header_name = data.get("header_name", False)
+    if not isinstance(header_name, bool):
+        raise ConfigError("'letterhead.header_name' must be true or false.")
+    head.header_name = header_name
     if data.get("logo"):
         logo = (base / str(data["logo"])).resolve()
         if not logo.exists():

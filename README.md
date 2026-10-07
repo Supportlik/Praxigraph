@@ -67,6 +67,7 @@ letterhead:
   city: Regensburg
   # country: Deutschland                # optional, shown in the footer
   logo: assets/logo.svg                 # optional; SVG is inlined, PNG/JPEG embedded
+  # header_name: true                   # optional: name + tagline next to the logo
   contact:                              # optional; each key is optional too
     phone: +49 941 000000
     email: mail@falkner-it.example

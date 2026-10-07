@@ -49,6 +49,12 @@ def test_label_override(example):
     assert load_config(path).labels["date"] == "Date"
 
 
+def test_header_name_must_be_boolean(example):
+    path = _rewrite(example, lambda d: d["letterhead"].update(header_name="yes"))
+    with pytest.raises(ConfigError, match="header_name"):
+        load_config(path)
+
+
 def test_missing_logo(example):
     path = _rewrite(example, lambda d: d["letterhead"].update(logo="nope.svg"))
     with pytest.raises(ConfigError, match="Logo file not found"):

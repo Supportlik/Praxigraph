@@ -55,9 +55,18 @@ def _firm_line(head: Letterhead) -> str:
     return _esc(head.name) + (f" – {_esc(head.tagline)}" if head.tagline else "")
 
 
+def _header_name_html(head: Letterhead) -> str:
+    tagline = (f'<div class="header-name-tagline">{_esc(head.tagline)}</div>'
+               if head.tagline else "")
+    return (f'<div class="header-name"><div class="header-name-main">'
+            f'{_esc(head.name)}</div>{tagline}</div>')
+
+
 def _header_html(head: Letterhead) -> str:
     inner = _logo_html(head.logo) if head.logo else \
         f'<div class="logo-fallback">{_firm_line(head)}</div>'
+    if head.logo and head.header_name:
+        inner = _header_name_html(head) + inner
     return f'<header class="letterhead-header">{inner}</header>'
 
 
